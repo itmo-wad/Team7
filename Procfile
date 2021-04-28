@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT Team7:app
+web: gunicorn app:team7demo
