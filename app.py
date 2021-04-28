@@ -15,7 +15,7 @@ app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 
 #Heroku
 
-client = pymongo.MongoClient("mongodb+srv://testuser:testpassword@cluster0.dtngb.gcp.mongodb.net/q4u?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongo://testuser:testpassword@cluster0.dtngb.gcp.mongodb.net/q4u?retryWrites=true&w=majority")
 db = client.test
 
 
