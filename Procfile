@@ -1,1 +1,1 @@
-web: gunicorn app:team7demo
+web: gunicorn Team7.app:app
