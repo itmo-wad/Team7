@@ -9,9 +9,16 @@ import json
 app = Flask(__name__)
 app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 
-# Database
-client = pymongo.MongoClient('localhost', 27017)
-db = client.user_login_system
+# Local Database
+# client = pymongo.MongoClient('localhost', 27017)
+# db = client.user_login_system
+
+#Heroku
+
+client = pymongo.MongoClient("mongodb+srv://testuser:testpassword@cluster0.dtngb.gcp.mongodb.net/q4u?retryWrites=true&w=majority")
+db = client.test
+
+
 
 # Decorators
 def login_required(f):
