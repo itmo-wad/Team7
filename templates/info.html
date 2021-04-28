@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<table
+	id="dataview"
+	class="display table nowrap responsive"
+	style="width: 100%"
+>
+	<thead>
+		<tr>
+			{% for header in rowDic.keys() %}
+			<th>{{header}}</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			{% for data in rowDic.values() %}
+			<td>{{data}}</td>
+			{% endfor %}
+		</tr>
+	</tbody>
+</table>
+
+<script>
+	$("#dataview").DataTable();
+</script>
+{% endblock %}

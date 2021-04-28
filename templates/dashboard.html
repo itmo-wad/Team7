@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block content %}
+
+<style>
+	tr[data-href] {
+		cursor: pointer;
+	}
+</style>
+<div class="card">
+	<div class="card-body">
+		<form method="post">
+			<textarea class="form-control" rows="5" name="user_csv"></textarea>
+			<button class="btn btn-success btn-lg mt-2" name="submit_csv">
+				Render CSV
+			</button>
+			<a href="/user/signout" class="btn btn-info btn-lg">
+				<span class="glyphicon glyphicon-log-out"></span>Sign Out</a
+			>
+		</form>
+
+		<div class="mt-4">
+			{% if request.method == 'POST'%}
+			<table
+				id="proxies"
+				class="display table nowrap responsive"
+				style="width: 100%"
+			>
+				<thead>
+					<tr>
+						{% for header in results[0].keys() %}
+						<th>{{header}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in results %}
+
+					<tr data-href="{{url_for('info', row = row)}}">
+						{% for index in range(0, len(fieldnames)) %}
+						<td>{{row[fieldnames[index]]}}</td>
+						{% endfor %}
+					</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$("#proxies").DataTable();
+
+	$(document).ready(function () {
+		$(document.body).on("click", "tr[data-href]", function () {
+			window.location.href = this.dataset.href;
+		});
+	});
+</script>
+{% endblock %}
