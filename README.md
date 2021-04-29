@@ -4,7 +4,7 @@ https://team7demo.herokuapp.com/
 
 Student managment web application using Flask and Mongodb for the ITMO WAD 2021 Spring project developed by team 7:
 
-**Supervised by A.P. Menshikov Alexander Alekseevich)**
+**(Supervised by A.P. Menshikov Alexander Alekseevich)**
 
 1. Hossam Montasser
 2. Armida Caushaj
@@ -13,7 +13,7 @@ Student managment web application using Flask and Mongodb for the ITMO WAD 2021 
 
 #### Note for usage:
 
-copy paste the CSV file in the text area of the dashboard after log in and please note that the app is configured to convert CSV files with the semicolon delimiter only, also please note that there must be only one semicolon between each value or else the value will not be processed and it will apear as an empty field, there is an example file in the rep so you can test the application with it
+copy paste the CSV file in the text area of the dashboard after log in and please note that the app is configured to convert CSV files with the semicolon delimiter only, also please note that there must be only one semicolon between each value or else the value will not be processed and it will apear as an empty field, there is an example file in the repository so you can test the application with it
 
 #### Steps to deploy (windows 10, VScode):
 
