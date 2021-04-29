@@ -3,6 +3,7 @@ from passlib.hash import pbkdf2_sha256
 from app import db
 import uuid
 
+# models to populate the mongodb collections
 class User:
 
   def start_session(self, user):
