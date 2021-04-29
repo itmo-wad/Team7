@@ -30,7 +30,7 @@ copy paste the CSV file in the text area of the dashboard after log in and pleas
 The responsive app starts with an animated registeration using svg and bootstrap, authentication with mongodb.
 in the dashboard there is a text area that you paste the content of a csv file and it will be converted into a python list of dictionaries and rendered to an html table.
 each row in the table is clickable (using javascript to enable the link becasue html doesn't allow links inside tables by defaults) and the link points to a private web page to display the data of the student's row that were clicked.
-When the clicked row data is forwarded to the private page, it is transfered as a string because "url_for" doesn't reansfer dictionaries, so in the info page the string is converted back to a dictionary so it can be iterated and rendered as a dynamic html table.
+When the clicked row data is forwarded to the private page, it is transfered as a string because "url_for" doesn't transfer dictionaries, so in the info page the string is converted back to a dictionary so it can be iterated and rendered as a dynamic html table.
 
 #### Prospects:
 
