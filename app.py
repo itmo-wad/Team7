@@ -24,7 +24,7 @@ client = pymongo.MongoClient("mongodb+srv://testuser:testpassword@cluster0.dtngb
 db = client.test
 
 # Heroku SQLALCHEMY connection
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://qfwupfjoemvmkz:1451c3b72ddf806467295bd4d590e1f1f8fb9de40083beac4bade149f8bcd6e5@ec2-35-174-35-242.compute-1.amazonaws.com:5432/d4p3a900d1hipg'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 # Local SQLALCHEMY connection
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
