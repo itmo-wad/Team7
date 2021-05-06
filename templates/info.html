@@ -20,6 +20,22 @@
 	</tbody>
 </table>
 
+<form action="#" , method="post">
+	<label for="url">Enter an https:// URL:</label>
+
+	<input
+		type="url"
+		name="nm"
+		id="url"
+		placeholder="https://example.com"
+		size="50"
+		required
+	/>
+	<br />
+	<input type="submit" value="submit" class="btn btn-primary" />
+	<a href="#" onclick="history.back()" class="btn btn-primary">Go back</a>
+</form>
+
 <script>
 	$("#dataview").DataTable();
 </script>
