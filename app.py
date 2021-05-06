@@ -26,15 +26,15 @@ app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 client = pymongo.MongoClient("mongodb+srv://testuser:testpassword@cluster0.dtngb.gcp.mongodb.net/q4u?retryWrites=true&w=majority")
 db = client.test
 
-#local sqlAlchemy connection
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# local sqlAlchemy connection
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 # Heroku sqlAlchemy connection
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 sql = SQLAlchemy(app)
 
