@@ -121,6 +121,7 @@ def info(row):
   str = row.replace("\'", "\"")
   # convert the double quoted string to a dictionary so the for loop in the info template can iterate it
   Diction = eval(str)
+
   url_received = request.url
   found_url = Urls.query.filter_by(long=url_received).first()
 
@@ -135,10 +136,10 @@ def info(row):
     sql.session.add(new_url)
     sql.session.commit()
     # return redirect(url_for("display_short_url", url=short_url))
-    url = short_url
+    # url = short_url
 
     #return the newly converted dictionary to the info page so it can be viewed as a table
-    return render_template('info.html', rowDic = Diction)
+    return render_template('info.html', rowDic = Diction, url=short_url )
 
 
 
