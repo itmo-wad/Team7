@@ -21,7 +21,7 @@ app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 # client = pymongo.MongoClient('localhost', 27017)
 # db = client.user_login_system
 
-#Mongodb Atlas for Heroku connection addons hobdev
+#Mongodb Atlas for Heroku connection 
 
 client = pymongo.MongoClient("mongodb+srv://testuser:testpassword@cluster0.dtngb.gcp.mongodb.net/q4u?retryWrites=true&w=majority")
 db = client.test
@@ -31,7 +31,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
-# Heroku sqlAlchemy connection
+# Heroku sqlAlchemy connection addons Hobby Dev and psycopg2
 # DATABASE_URL = os.environ['DATABASE_URL']
 
 # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -63,10 +63,10 @@ def shorten_url():
 
 
 # Decorators: verify if the user currently logged in
-# *args: variable length arguments (1,2,3,4....etc)
-# variable length of keyword arguments (a:1,b:2,:c:3)
-# f: the route function as an argument
-#logged_in is the seesion value that is created earlier
+# *args: variable length unlimited arguments (1,2,3,4....etc)
+# variable length of keyword and value arguments (a:1,b:2,:c:3....etc)
+# f: the route function as an argument @app.route('/example')
+#logged_in is the seesion value that is created
 def login_required(f):
   @wraps(f)
   def wrap(*args, **kwargs):
@@ -111,22 +111,8 @@ def dashboard():
 
 #route to transfer the sudent data that came from his/her clicked row and viewed privatly
 #the <row> argument is the string that contain the student data passd by the url_for in the html template
-@app.route('/info <row>',  methods=['GET', 'POST'])
+@app.route('/info <row>')
 def info(row):
-  if request.method == "POST":
-    url_received = request.form["nm"]
-    found_url = Urls.query.filter_by(long=url_received).first()
-
-    if found_url:
-      return redirect(url_for("display_short_url", url=found_url.short))
-    else:
-      short_url = shorten_url()
-      print(short_url)
-      new_url = Urls(url_received, short_url)
-      sql.session.add(new_url)
-      sql.session.commit()
-      return redirect(url_for("display_short_url", url=short_url))
-
   #replase each single quotation (') mark with double quotation mark
   #because the dictionar must be enclosed with double quotation(") mark
   #the "\'" stands for the single quotation mark and the \ is an escape character so the
@@ -135,9 +121,24 @@ def info(row):
   str = row.replace("\'", "\"")
   # convert the double quoted string to a dictionary so the for loop in the info template can iterate it
   Diction = eval(str)
+  url_received = request.url
+  found_url = Urls.query.filter_by(long=url_received).first()
 
-  #return the newly converted dictionary to the info page so it can be viewed as a table
-  return render_template('info.html', rowDic = Diction)
+  if found_url:
+    # return redirect(url_for("display_short_url", url=found_url.short))
+    return render_template('info.html', rowDic = Diction, url=found_url.short)
+    
+  else:
+    short_url = shorten_url()
+    print(short_url)
+    new_url = Urls(url_received, short_url)
+    sql.session.add(new_url)
+    sql.session.commit()
+    # return redirect(url_for("display_short_url", url=short_url))
+    url = short_url
+
+    #return the newly converted dictionary to the info page so it can be viewed as a table
+    return render_template('info.html', rowDic = Diction)
 
 
 
@@ -150,11 +151,8 @@ def redirection(short_url):
   else:
     return f'<h1>Url doesnt exist</h1>'
 
-@app.route('/display/<url>')
-def display_short_url(url):
-  return render_template('shorturl.html', short_url_display=url)
 
-
+#test route
 @app.route('/all_urls')
 def display_all():
   return render_template('all_urls.html', vals=Urls.query.all())

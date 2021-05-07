@@ -2,6 +2,10 @@
 
 https://team7demo.herokuapp.com/
 
+#### Stack:
+
+Flask, Mongodb, SQLAlchemy, bootstrap, Jquery
+
 Student managment web application using Flask and Mongodb for the ITMO WAD 2021 Spring project developed by team 7:
 
 **(Supervised by A.P. Menshikov Alexander Alekseevich)**
@@ -36,7 +40,7 @@ When the clicked row data is forwarded to the private page, it is transfered as 
 
 the follwoing list are doable features for the future, that will be added to the app to be more efficent.
 
-1. build a url shotner to store each student private link in mongodb as a pointer to the long url that is created in the first place
+1. for each student, send automatically email with private link of the student data.
 2. build a dynamic mongodb model to implement the csv data in the database dynamically without any restriction
 3. implement CRUD operations so the user can edit and store multiple CSV files and assign them to each group of students
 4. build a middleware so the web application can communicate the data to the ITMO student accounts to display the course progress, details and marks privately.

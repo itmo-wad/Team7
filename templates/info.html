@@ -1,40 +1,78 @@
 {% extends "base.html" %} {% block content %}
-<table
-	id="dataview"
-	class="display table nowrap responsive"
-	style="width: 100%"
+<div class="card">
+	<div class="card-body">
+		<table
+			id="dataview"
+			class="display table nowrap responsive"
+			style="width: 100%"
+		>
+			<thead>
+				<tr>
+					{% for header in rowDic.keys() %}
+					<th>{{header}}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					{% for data in rowDic.values() %}
+					<td>{{data}}</td>
+					{% endfor %}
+				</tr>
+			</tbody>
+		</table>
+		<h5>
+			<span class="badge badge-secondary">Share with private link</span>
+		</h5>
+		<br />
+		<button
+			type="button"
+			class="btn btn-primary"
+			data-toggle="modal"
+			data-target="#linkModal"
+		>
+			Share
+		</button>
+		<br />
+		<button onclick="history.back()" class="btn btn-primary">Go Back</button>
+	</div>
+</div>
 >
-	<thead>
-		<tr>
-			{% for header in rowDic.keys() %}
-			<th>{{header}}</th>
-			{% endfor %}
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			{% for data in rowDic.values() %}
-			<td>{{data}}</td>
-			{% endfor %}
-		</tr>
-	</tbody>
-</table>
 
-<form action="#" , method="post">
-	<label for="url">Enter an https:// URL:</label>
-
-	<input
-		type="url"
-		name="nm"
-		id="url"
-		placeholder="https://example.com"
-		size="50"
-		required
-	/>
-	<br />
-	<input type="submit" value="submit" class="btn btn-primary" />
-	<a href="#" onclick="history.back()" class="btn btn-primary">Go back</a>
-</form>
+<!-- Modal -->
+<div
+	class="modal fade"
+	id="linkModal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Generated Link</h5>
+				<button
+					type="button"
+					class="close"
+					data-dismiss="modal"
+					aria-label="Close"
+				>
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- <p>http://127.0.0.1:5000/{{url}}</p> -->
+				<p>https://team7demo.herokuapp.com/{{url}}</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script>
 	$("#dataview").DataTable();

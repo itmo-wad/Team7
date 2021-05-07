@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 
 <style>
-	tr[data-href] {
+	td[data-href] {
 		cursor: pointer;
 	}
 </style>
@@ -29,15 +29,19 @@
 						{% for header in results[0].keys() %}
 						<th>{{header}}</th>
 						{% endfor %}
+						<th>Links</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for row in results %}
 
-					<tr data-href="{{url_for('info', row = row)}}">
+					<tr>
 						{% for index in range(0, len(fieldnames)) %}
 						<td>{{row[fieldnames[index]]}}</td>
 						{% endfor %}
+						<td data-href="{{url_for('info', row = row)}}" class="btn-link">
+							Click
+						</td>
 					</tr>
 
 					{% endfor %}
@@ -52,7 +56,7 @@
 	$("#proxies").DataTable();
 
 	$(document).ready(function () {
-		$(document.body).on("click", "tr[data-href]", function () {
+		$(document.body).on("click", "td[data-href]", function () {
 			window.location.href = this.dataset.href;
 		});
 	});
