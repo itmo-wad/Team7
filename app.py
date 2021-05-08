@@ -27,14 +27,14 @@ client = pymongo.MongoClient("mongodb+srv://testuser:testpassword@cluster0.dtngb
 db = client.test
 
 # local sqlAlchemy connection
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 # Heroku sqlAlchemy connection addons Hobby Dev and psycopg2
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 sql = SQLAlchemy(app)
 

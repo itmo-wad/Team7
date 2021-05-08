@@ -1,6 +1,6 @@
 #### Demo:
 
-https://team7demo.herokuapp.com/
+http://studentzone.itmo.xyz/
 
 #### Stack:
 
